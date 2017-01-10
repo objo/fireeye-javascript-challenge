@@ -25,7 +25,7 @@ var tableMaker = {
   },
 
   rowHeaders: function() {
-    return this.row(null,
+    return this.row('header',
       this.rowHeader("id") +
       this.rowHeader("username") +
       this.rowHeader("name") +
@@ -64,5 +64,41 @@ $(document).ready(function() {
 
   $('table > tbody tr').eq(1).addClass('active');
 
-  $('table.data-table > tbody tr').keynavigator();
-})
+  // $('table > tbody tr').keynavigator()
+  //     .on("up-arrow", function(element) {
+  //       console.log("Pressed key UP");
+  //     })
+  //     .on("down-arrow", function(element) {
+  //       console.log("Pressed key DOWN");
+  //     });
+});
+
+function arrowUp() {
+  var activeTableRow = $('.active').prev();
+  console.log(activeTableRow.length);
+  if (activeTableRow.length && !activeTableRow.is('#header')) {
+    $('.active').removeClass("active");
+    activeTableRow.addClass('active');
+  }
+};
+function arrowDown() {
+  var activeTableRow = $('.active').next();
+  console.log(activeTableRow.length);
+  if (activeTableRow.length) {
+    $('.active').removeClass("active");
+    activeTableRow.addClass('active');
+  }
+};
+
+$(window).keydown(function (key) {
+  if (key.keyCode == 38) {
+     arrowUp();
+  }
+  if (key.keyCode == 40) {
+     arrowDown();
+  }
+});
+
+$(document).keydown(function(e) {
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
