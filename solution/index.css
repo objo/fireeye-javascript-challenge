@@ -3,7 +3,7 @@ body {
 }
 
 div.data-table {
-  padding-left: 200px
+  padding-left: 200px;
 }
 
 table {
@@ -30,4 +30,14 @@ th, td {
 
 tr.active {
   background-color: #c3e6c0;
+}
+
+table tbody {
+  height:1000px;
+  overflow-y:scroll;
+  display:block;
+}
+
+table thead {
+  display:block;
 }

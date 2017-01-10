@@ -35,7 +35,7 @@ var tableMaker = {
 
   row: function(id, contents) {
     if(id){
-      return "<tr id='" + id + "'>" + contents + "</tr>";
+      return "<tr id='" + id + "' onClick='goToUser(" + id + ")'>" + contents + "</tr>";
     }
     else {
       return "<tr>" + contents + "</tr>";
@@ -63,42 +63,57 @@ $(document).ready(function() {
   );
 
   $('table > tbody tr').eq(1).addClass('active');
-
-  // $('table > tbody tr').keynavigator()
-  //     .on("up-arrow", function(element) {
-  //       console.log("Pressed key UP");
-  //     })
-  //     .on("down-arrow", function(element) {
-  //       console.log("Pressed key DOWN");
-  //     });
 });
 
 function arrowUp() {
   var activeTableRow = $('.active').prev();
-  console.log(activeTableRow.length);
   if (activeTableRow.length && !activeTableRow.is('#header')) {
     $('.active').removeClass("active");
     activeTableRow.addClass('active');
+    $("tbody").scrollTop(
+      $("tbody tr.active").offset().top +
+      $("tbody").scrollTop() -
+      $("tbody").offset().top
+    );
   }
 };
 function arrowDown() {
   var activeTableRow = $('.active').next();
-  console.log(activeTableRow.length);
   if (activeTableRow.length) {
     $('.active').removeClass("active");
     activeTableRow.addClass('active');
+    $("tbody").scrollTop(
+      $("tbody tr.active").offset().top +
+      $("tbody").scrollTop() -
+      $("tbody").offset().top
+    );
   }
 };
 
 $(window).keydown(function (key) {
   if (key.keyCode == 38) {
-     arrowUp();
+    key.preventDefault();
+    arrowUp();
   }
   if (key.keyCode == 40) {
-     arrowDown();
+    key.preventDefault();
+    arrowDown();
+  }
+  if (key.keyCode == 13) {
+    console.log("Pressed Enter and id is " + $('.active').attr('id') );
+    goToActiveUser();
   }
 });
 
-$(document).keydown(function(e) {
-    e.preventDefault(); // prevent the default action (scroll / move caret)
-});
+function makeActive() {
+  $('.active').removeClass("active");
+  this.addClass('active');
+}
+
+function goToActiveUser() {
+  goToUser($('.active').attr('id'));
+}
+
+function goToUser(id) {
+  window.location = 'users.html#' + id;
+}
