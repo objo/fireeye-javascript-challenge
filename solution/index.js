@@ -6,7 +6,16 @@ module.exports.tableMaker = {
 
   rows: function(row_data) {
     if(row_data){
-      return "<tr><td></td></tr>";
+      rowsString = "";
+      row_data.forEach(function(current_value) {
+        rowsString += "<tr>"
+        rowsString += "<td>" + current_value.id + "</td>";
+        rowsString += "<td>" + current_value.username + "</td>";
+        rowsString += "<td>" + current_value.first_name + " " + current_value.last_name + "</td>";
+        rowsString += "<td>" + current_value.email + "</td>";
+        rowsString += "</tr>"
+      });
+      return rowsString;
     }
     else {
       return "";
@@ -14,6 +23,6 @@ module.exports.tableMaker = {
   },
 
   render: function(row_data) {
-    return this.table();
+    return this.table(row_data);
   }
 }
