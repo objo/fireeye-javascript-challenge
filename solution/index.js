@@ -51,12 +51,9 @@ var tableMaker = {
 }
 
 $(document).ready(function() {
-  tableMaker.render([{
-      "display_name":null,
-      "email":"tatum.efren@mandiant.foo",
-      "first_name":"Tatum",
-      "id":1,
-      "last_name":"Efren",
-      "username":"tefren"
-    }]);
+
+  $('.data-table').append(
+    tableMaker.render(users.users)
+  );
+
 })
