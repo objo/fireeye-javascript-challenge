@@ -18,12 +18,17 @@ describe('Table', function() {
       tableString = table.render(user)
 
       assert.ok(tableString.includes("<table>"));
-      assert.ok(tableString.includes("<tr><th>id</th></tr>"));
+      // checks for the table header
+      assert.ok(tableString.includes("<th>id</th>"));
+      assert.ok(tableString.includes("username"));
+      assert.ok(tableString.includes("name"));
+      assert.ok(tableString.includes("email"));
+
+      // checks for the table contents
       assert.ok(tableString.includes("<td>1</td>"));
-      assert.ok(tableString.includes("<td>tefren</td>"));
-      assert.ok(tableString.includes("<td>Tatum Efren</td>"));
-      assert.ok(tableString.includes("<td>tatum.efren@mandiant.foo</td>"));
-      assert.ok(tableString.includes("</table>"));
+      assert.ok(tableString.includes("tefren"));
+      assert.ok(tableString.includes("Tatum Efren<"));
+      assert.ok(tableString.includes("tatum.efren@mandiant.foo"));
     });
 
   });

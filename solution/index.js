@@ -25,7 +25,12 @@ module.exports.tableMaker = {
   },
 
   rowHeaders: function() {
-    return this.row(this.rowHeader("id"));
+    return this.row(
+      this.rowHeader("id") +
+      this.rowHeader("username") +
+      this.rowHeader("name") +
+      this.rowHeader("email")
+    );
   },
 
   row: function(contents) {
