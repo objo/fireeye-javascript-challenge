@@ -10,7 +10,7 @@ var tableMaker = {
       // I ran into scoping issues when trying to use forEach here
       for(i = 0; i < row_data.length; i++) {
         current_value = row_data[i];
-        rowsString += this.row(
+        rowsString += this.row(current_value.id ,
           this.cell(current_value.id) +
           this.cell(current_value.username) +
           this.cell(current_value.first_name + " " + current_value.last_name) +
@@ -25,7 +25,7 @@ var tableMaker = {
   },
 
   rowHeaders: function() {
-    return this.row(
+    return this.row(null,
       this.rowHeader("id") +
       this.rowHeader("username") +
       this.rowHeader("name") +
@@ -33,8 +33,14 @@ var tableMaker = {
     );
   },
 
-  row: function(contents) {
-    return "<tr>" + contents + "</tr>";
+  row: function(id, contents) {
+    if(id){
+      return "<tr id='" + id + "'>" + contents + "</tr>";
+    }
+    else {
+      return "<tr>" + contents + "</tr>";
+    }
+
   },
 
   rowHeader: function(contents) {
@@ -56,4 +62,7 @@ $(document).ready(function() {
     tableMaker.render(users.users)
   );
 
+  $('table > tbody tr').eq(1).addClass('active');
+
+  $('table.data-table > tbody tr').keynavigator();
 })

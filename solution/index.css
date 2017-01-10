@@ -1,0 +1,33 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+
+div.data-table {
+  padding-left: 200px
+}
+
+table {
+  font-family: sans-serif;
+  font-size: .8em;
+  border: 5px solid #c0d1e6;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #e2edf4;
+}
+
+th, td {
+  text-align: left;
+  border-style: solid;
+  border-color: #e2edf4;
+  border-width: thin;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 100px;
+}
+
+tr.active {
+  background-color: #c3e6c0;
+}

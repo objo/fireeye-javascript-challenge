@@ -62,4 +62,23 @@ describe('tableMaker', function() {
 
   });
 
+  describe("#row", function() {
+
+    it("should create a row with user id", function(){
+      user = [{
+        "display_name":null,
+        "email":"tatum.efren@mandiant.foo",
+        "first_name":"Tatum",
+        "id":1,
+        "last_name":"Efren",
+        "username":"tefren"
+      }]
+
+      rowString = tableMaker.row(1, "foo");
+
+      assert.ok(rowString.includes("<tr id='1'>"));
+
+    })
+  })
+
 });
