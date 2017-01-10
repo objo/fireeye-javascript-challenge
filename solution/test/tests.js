@@ -1,13 +1,9 @@
-table = require('./index.js').tableMaker;
-
-
-var assert = require('assert');
-describe('Table', function() {
+describe('tableMaker', function() {
 
   describe('#render', function() {
 
     it('should render a table with no rows', function() {
-      tableString = table.render();
+      tableString = tableMaker.render();
       assert.equal("<table></table>", tableString );
       assert.ok(!tableString.includes("<tr>"));
     });
@@ -22,7 +18,7 @@ describe('Table', function() {
         "username":"tefren"
       }]
 
-      tableString = table.render(user);
+      tableString = tableMaker.render(user);
 
       assert.ok(tableString.includes("<table>"));
       // checks for the table header
@@ -55,14 +51,13 @@ describe('Table', function() {
         "username":"goswald"
       }]
 
-      tableString = table.render(users);
+      tableString = tableMaker.render(users);
 
       assert.ok(tableString.includes("tefren"));
       assert.ok(tableString.includes("Tatum Efren"));
       assert.ok(tableString.includes("2"));
       assert.ok(tableString.includes("goswald"));
       assert.ok(tableString.includes("Gideon Oswald"));
-
     });
 
   });

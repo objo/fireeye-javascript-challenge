@@ -1,4 +1,4 @@
-module.exports.tableMaker = {
+var tableMaker = {
 
   table: function(row_data) {
     return "<table>" + this.rows(row_data) + "</table>";
@@ -49,3 +49,14 @@ module.exports.tableMaker = {
     return this.table(row_data);
   }
 }
+
+$(document).ready(function() {
+  tableMaker.render([{
+      "display_name":null,
+      "email":"tatum.efren@mandiant.foo",
+      "first_name":"Tatum",
+      "id":1,
+      "last_name":"Efren",
+      "username":"tefren"
+    }]);
+})
