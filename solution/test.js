@@ -18,6 +18,7 @@ describe('Table', function() {
       tableString = table.render(user)
 
       assert.ok(tableString.includes("<table>"));
+      assert.ok(tableString.includes("<tr><th>id</th></tr>"));
       assert.ok(tableString.includes("<td>1</td>"));
       assert.ok(tableString.includes("<td>tefren</td>"));
       assert.ok(tableString.includes("<td>Tatum Efren</td>"));
