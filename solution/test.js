@@ -13,9 +13,16 @@ describe('Table', function() {
     });
 
     it('should render a table with 1 row', function(){
-      user = [{"display_name":null,"email":"tatum.efren@mandiant.foo","first_name":"Tatum","id":1,"last_name":"Efren","username":"tefren"}]
+      user = [{
+        "display_name":null,
+        "email":"tatum.efren@mandiant.foo",
+        "first_name":"Tatum",
+        "id":1,
+        "last_name":"Efren",
+        "username":"tefren"
+      }]
 
-      tableString = table.render(user)
+      tableString = table.render(user);
 
       assert.ok(tableString.includes("<table>"));
       // checks for the table header
@@ -29,6 +36,33 @@ describe('Table', function() {
       assert.ok(tableString.includes("tefren"));
       assert.ok(tableString.includes("Tatum Efren<"));
       assert.ok(tableString.includes("tatum.efren@mandiant.foo"));
+    });
+
+    it('should render a table with multiple rows', function(){
+      users = [{
+        "display_name":null,
+        "email":"tatum.efren@mandiant.foo",
+        "first_name":"Tatum",
+        "id":1,
+        "last_name":"Efren",
+        "username":"tefren"
+      },{
+        "display_name":null,
+        "email":"gideon.oswald@mandiant.foo",
+        "first_name":"Gideon",
+        "id":2,
+        "last_name":"Oswald",
+        "username":"goswald"
+      }]
+
+      tableString = table.render(users);
+
+      assert.ok(tableString.includes("tefren"));
+      assert.ok(tableString.includes("Tatum Efren"));
+      assert.ok(tableString.includes("2"));
+      assert.ok(tableString.includes("goswald"));
+      assert.ok(tableString.includes("Gideon Oswald"));
+
     });
 
   });
